@@ -1,25 +1,27 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'SaniTalk',
       theme: ThemeData(
         colorScheme: .fromSeed(
           seedColor: Colors.deepPurple,
         ),
       ),
-      home: const MyHomePage(
-        title: 'Flutter Demo Home Page',
-      ),
+      home: const MyHomePage(title: 'SaniTalk'),
     );
   }
 }
@@ -49,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
           context,
         ).colorScheme.inversePrimary,
         title: Text(widget.title),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
