@@ -11,6 +11,8 @@ class CustomElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return ElevatedButton(
       onPressed: onTab,
       style: ElevatedButton.styleFrom(
@@ -22,7 +24,7 @@ class CustomElevatedButton extends StatelessWidget {
           fontWeight: FontWeight.w700,
           letterSpacing: 1,
         ),
-        fixedSize: Size(250, 50),
+        fixedSize: Size(screenWidth, 50),
         shape: RoundedRectangleBorder(
           side: BorderSide(
             style: BorderStyle.solid,

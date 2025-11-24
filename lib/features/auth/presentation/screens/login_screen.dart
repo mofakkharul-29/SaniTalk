@@ -5,6 +5,7 @@ import 'package:sani_talk/common/widgets/custom_elevated_button.dart';
 import 'package:sani_talk/common/widgets/custom_textfield.dart';
 import 'package:sani_talk/common/widgets/login_options.dart';
 import 'package:sani_talk/common/widgets/remember_me.dart';
+import 'package:sani_talk/core/constant/widget/custom_text.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -42,6 +43,8 @@ class LoginScreen extends StatelessWidget {
                     onTab: () {},
                   ),
                   const SizedBox(height: 15),
+                  CustomText(),
+                  const SizedBox(height: 5),
                   CustomDivider(text: 'OR'),
                   const SizedBox(height: 10),
                   LoginOptions(),
