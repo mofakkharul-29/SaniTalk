@@ -7,8 +7,8 @@ import 'package:sani_talk/common/widgets/login_options.dart';
 import 'package:sani_talk/common/widgets/remember_me.dart';
 import 'package:sani_talk/core/constant/widget/custom_text.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,8 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomContainer(
-              portion: 2.3,
-              image: 'assets/images/onboarding2.jpg',
+              portion: 2.8,
+              image: 'assets/images/onboarding1.jpg',
             ),
             const SizedBox(height: 40),
             Container(

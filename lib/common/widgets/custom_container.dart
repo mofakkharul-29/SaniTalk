@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:sani_talk/core/theme/color_pallate.dart';
 
 class CustomContainer extends StatelessWidget {
-  const CustomContainer({super.key});
+  final double portion;
+  final String image;
+  const CustomContainer({
+    super.key,
+    required this.portion,
+    required this.image,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +16,7 @@ class CustomContainer extends StatelessWidget {
       context,
     ).size.height;
     return Container(
-      height: height / 2.3,
+      height: height / portion,
       width: double.maxFinite,
       decoration: BoxDecoration(
         boxShadow: [
@@ -21,10 +27,7 @@ class CustomContainer extends StatelessWidget {
           ),
         ],
       ),
-      child: Image.asset(
-        'assets/images/onboarding2.jpg',
-        fit: BoxFit.cover,
-      ),
+      child: Image.asset(image, fit: BoxFit.cover),
     );
   }
 }
