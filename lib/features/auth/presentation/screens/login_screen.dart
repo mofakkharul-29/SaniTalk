@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sani_talk/common/widgets/custom_container.dart';
 import 'package:sani_talk/common/widgets/custom_elevated_button.dart';
 import 'package:sani_talk/common/widgets/custom_textfield.dart';
+import 'package:sani_talk/common/widgets/remember_me.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -17,7 +18,7 @@ class LoginScreen extends StatelessWidget {
             CustomContainer(),
             const SizedBox(height: 40),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
                   CustomTextfield(
@@ -31,8 +32,12 @@ class LoginScreen extends StatelessWidget {
                     icon: Icons.lock_outlined,
                     labelText: 'Enter Password',
                   ),
+                  RememberMe(value: false, onTab: () {}),
                   const SizedBox(height: 10),
-                  CustomElevatedButton(text: 'login'),
+                  CustomElevatedButton(
+                    text: 'login',
+                    onTab: () {},
+                  ),
                 ],
               ),
             ),

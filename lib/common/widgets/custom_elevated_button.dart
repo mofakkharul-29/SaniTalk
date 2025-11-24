@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class CustomElevatedButton extends StatelessWidget {
+  final void Function()? onTab;
   final String text;
   const CustomElevatedButton({
     super.key,
+    required this.onTab,
     required this.text,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onTab,
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.grey,
         foregroundColor: Colors.black,
@@ -20,7 +22,7 @@ class CustomElevatedButton extends StatelessWidget {
           fontWeight: FontWeight.w700,
           letterSpacing: 1,
         ),
-        fixedSize: Size(180, 50),
+        fixedSize: Size(250, 50),
         shape: RoundedRectangleBorder(
           side: BorderSide(
             style: BorderStyle.solid,
