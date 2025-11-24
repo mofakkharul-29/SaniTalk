@@ -44,13 +44,13 @@ class LoginScreen extends StatelessWidget {
                   RememberMe(value: false, onTab: () {}),
                   const SizedBox(height: 10),
                   CustomElevatedButton(
-                    text: 'login',
+                    text: 'Login',
                     onTab: () {},
                   ),
                   const SizedBox(height: 15),
                   CustomText(
                     text1: 'Don\'t have account? ',
-                    text2: 'SignUp',
+                    text2: 'Sign Up',
                   ),
                   const SizedBox(height: 5),
                   CustomDivider(text: 'OR'),

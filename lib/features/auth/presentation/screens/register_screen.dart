@@ -51,13 +51,13 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   CustomElevatedButton(
-                    text: 'SignUp',
+                    text: 'Sign Up',
                     onTab: () {},
                   ),
                   const SizedBox(height: 15),
                   CustomText(
                     text1: 'Already have an account? ',
-                    text2: 'SignIn',
+                    text2: 'Login',
                   ),
                   const SizedBox(height: 5),
                   CustomDivider(text: 'OR'),
