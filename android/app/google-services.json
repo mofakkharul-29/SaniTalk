@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "998106791878",
+    "project_id": "sanitalk",
+    "storage_bucket": "sanitalk.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998106791878:android:b6eb22dea9b61db5c47cc7",
+        "android_client_info": {
+          "package_name": "com.example.sani_talk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqhy2fRGw0VmfMpiKrTwXYRsUnylFI_us"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
