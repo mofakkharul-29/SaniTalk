@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
 class CustomText extends StatelessWidget {
-  const CustomText({super.key});
+  final String text1;
+  final String text2;
+  const CustomText({
+    super.key,
+    required this.text1,
+    required this.text2,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         const Spacer(),
-        const Text(
-          'Don\'t have account? ',
+        Text(
+          text1,
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w500,
@@ -25,8 +31,8 @@ class CustomText extends StatelessWidget {
       onTap: () {
         debugPrint('tapped!');
       },
-      child: const Text(
-        'SignUp',
+      child: Text(
+        text2,
         style: TextStyle(
           color: Colors.blue,
           fontWeight: FontWeight.w700,

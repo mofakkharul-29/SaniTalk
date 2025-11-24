@@ -4,7 +4,6 @@ import 'package:sani_talk/common/widgets/custom_divider.dart';
 import 'package:sani_talk/common/widgets/custom_elevated_button.dart';
 import 'package:sani_talk/common/widgets/custom_textfield.dart';
 import 'package:sani_talk/common/widgets/login_options.dart';
-import 'package:sani_talk/common/widgets/remember_me.dart';
 import 'package:sani_talk/core/constant/widget/custom_text.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -20,13 +19,25 @@ class RegisterScreen extends StatelessWidget {
           children: [
             CustomContainer(
               portion: 2.8,
-              image: 'assets/images/onboarding1.jpg',
+              color: const Color.fromARGB(
+                255,
+                202,
+                200,
+                200,
+              ),
+              image: 'assets/images/ob.jpg',
             ),
             const SizedBox(height: 40),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 children: [
+                  CustomTextfield(
+                    obscureText: false,
+                    icon: Icons.person_outline,
+                    labelText: 'Username',
+                  ),
+                  const SizedBox(height: 8),
                   CustomTextfield(
                     obscureText: false,
                     icon: Icons.email_outlined,
@@ -38,15 +49,16 @@ class RegisterScreen extends StatelessWidget {
                     icon: Icons.lock_outlined,
                     labelText: 'Enter Password',
                   ),
-                  const SizedBox(height: 3),
-                  RememberMe(value: false, onTab: () {}),
                   const SizedBox(height: 10),
                   CustomElevatedButton(
-                    text: 'login',
+                    text: 'SignUp',
                     onTab: () {},
                   ),
                   const SizedBox(height: 15),
-                  CustomText(),
+                  CustomText(
+                    text1: 'Already have an account? ',
+                    text2: 'SignIn',
+                  ),
                   const SizedBox(height: 5),
                   CustomDivider(text: 'OR'),
                   const SizedBox(height: 10),

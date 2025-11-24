@@ -6,6 +6,7 @@ import 'package:sani_talk/common/widgets/custom_textfield.dart';
 import 'package:sani_talk/common/widgets/login_options.dart';
 import 'package:sani_talk/common/widgets/remember_me.dart';
 import 'package:sani_talk/core/constant/widget/custom_text.dart';
+import 'package:sani_talk/core/theme/color_pallate.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -20,6 +21,7 @@ class LoginScreen extends StatelessWidget {
           children: [
             CustomContainer(
               portion: 2.3,
+              color: shadowColor,
               image: 'assets/images/onboarding2.jpg',
             ),
             const SizedBox(height: 40),
@@ -46,7 +48,10 @@ class LoginScreen extends StatelessWidget {
                     onTab: () {},
                   ),
                   const SizedBox(height: 15),
-                  CustomText(),
+                  CustomText(
+                    text1: 'Don\'t have account? ',
+                    text2: 'SignUp',
+                  ),
                   const SizedBox(height: 5),
                   CustomDivider(text: 'OR'),
                   const SizedBox(height: 10),

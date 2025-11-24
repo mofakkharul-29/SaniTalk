@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:sani_talk/core/theme/color_pallate.dart';
 
 class CustomContainer extends StatelessWidget {
   final double portion;
   final String image;
+  final Color color;
   const CustomContainer({
     super.key,
     required this.portion,
+    required this.color,
     required this.image,
   });
 
@@ -21,7 +22,7 @@ class CustomContainer extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: shadowColor,
+            color: color,
             blurRadius: 15,
             spreadRadius: 20,
           ),
