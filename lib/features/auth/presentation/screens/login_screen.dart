@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sani_talk/common/widgets/custom_container.dart';
+import 'package:sani_talk/common/widgets/custom_divider.dart';
 import 'package:sani_talk/common/widgets/custom_elevated_button.dart';
 import 'package:sani_talk/common/widgets/custom_textfield.dart';
+import 'package:sani_talk/common/widgets/login_options.dart';
 import 'package:sani_talk/common/widgets/remember_me.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -32,12 +34,17 @@ class LoginScreen extends StatelessWidget {
                     icon: Icons.lock_outlined,
                     labelText: 'Enter Password',
                   ),
+                  const SizedBox(height: 3),
                   RememberMe(value: false, onTab: () {}),
                   const SizedBox(height: 10),
                   CustomElevatedButton(
                     text: 'login',
                     onTab: () {},
                   ),
+                  const SizedBox(height: 15),
+                  CustomDivider(text: 'OR'),
+                  const SizedBox(height: 10),
+                  LoginOptions(),
                 ],
               ),
             ),
