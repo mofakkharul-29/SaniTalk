@@ -12,7 +12,20 @@
           "package_name": "com.example.sani_talk"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "998106791878-0dpvn1p55gkf3rgec267mf8jna6de1lk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sani_talk",
+            "certificate_hash": "da0095bb7176ad4b8a127312e55cf16b3da96d81"
+          }
+        },
+        {
+          "client_id": "998106791878-g0ep6o701cgd3mq62a73fl7f8fgtpfe5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCqhy2fRGw0VmfMpiKrTwXYRsUnylFI_us"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998106791878-g0ep6o701cgd3mq62a73fl7f8fgtpfe5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
