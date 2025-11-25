@@ -86,7 +86,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                 Opacity(
                   opacity: _textAnimation.value,
                   child: Text(
-                    'SafeTalk',
+                    'SaniTalk',
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
