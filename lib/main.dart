@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sani_talk/features/splash/presentation/screen/splash_screen.dart';
+import 'package:sani_talk/features/onboarding/presentation/screen/onboarding_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
       ),
       // home: const RegisterScreen(),
       // home: const LoginScreen(),
-      home: const SplashScreen(),
+      // home: const SplashScreen(),
+      home: const OnboardingScreen(),
     );
   }
 }
