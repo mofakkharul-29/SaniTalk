@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../provider/page_index_provider.dart';
+import '../../../../common/provider/page_index_provider.dart';
 import '../../provider/pages_provider.dart';
 
 class CustomPageBuilder extends ConsumerStatefulWidget {

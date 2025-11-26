@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sani_talk/core/theme/color_pallate.dart';
 import 'package:sani_talk/features/onboarding/presentation/widgets/custom_page_builder.dart';
-import 'package:sani_talk/features/onboarding/provider/page_index_provider.dart';
+import 'package:sani_talk/common/provider/page_index_provider.dart';
 import 'package:sani_talk/features/onboarding/provider/pages_provider.dart';
 
 class OnboardingScreen extends ConsumerWidget {
