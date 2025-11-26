@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sani_talk/core/constant/appstartup/app_start_up.dart';
 import 'package:sani_talk/core/theme/color_pallate.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
@@ -48,6 +49,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {}
     });
+
+    Future.delayed(const Duration(seconds: 4), () {
+      if (!mounted) return;
+      ref
+          .read(splashStateNotifierProvider.notifier)
+          .setSplashComplete();
+    });
   }
 
   @override
@@ -55,6 +63,22 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     _controller.dispose();
     super.dispose();
   }
+
+  // void navigateNext() {
+  //   final startUpStatus = ref.read(
+  //     appStartUpNotifierProvider,
+  //   );
+  //   if (startUpStatus) {
+  //     context.go('/onboarding');
+  //   } else {
+  //     final user = FirebaseAuth.instance.currentUser;
+  //     if (user == null) {
+  //       context.go('/login');
+  //     } else {
+  //       context.go('/home');
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

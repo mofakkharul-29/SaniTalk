@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 class CustomText extends StatelessWidget {
   final String text1;
   final String text2;
+  final VoidCallback? onTab;
+
   const CustomText({
     super.key,
     required this.text1,
     required this.text2,
+    this.onTab,
   });
 
   @override
@@ -30,6 +33,7 @@ class CustomText extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         debugPrint('tapped!');
+        onTab?.call();
       },
       child: Text(
         text2,

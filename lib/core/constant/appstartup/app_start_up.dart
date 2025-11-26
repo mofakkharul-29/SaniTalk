@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,6 +15,8 @@ class AppStartUpNotifier extends StateNotifier<bool> {
   Future<void> setFirstLaunchedStatus(bool value) async {
     final SharedPreferences pref =
         await SharedPreferences.getInstance();
+    // await pref.setBool('isFirstLaunch', value);
+    // state = value;
     try {
       pref.setBool('isFirstLaunch', value);
       state = value;
@@ -28,4 +30,17 @@ class AppStartUpNotifier extends StateNotifier<bool> {
 final appStartUpNotifierProvider =
     StateNotifierProvider<AppStartUpNotifier, bool>(
       (ref) => AppStartUpNotifier(),
+    );
+
+class SplashStateNotifier extends StateNotifier<bool> {
+  SplashStateNotifier() : super(true);
+
+  void setSplashComplete() {
+    state = false;
+  }
+}
+
+final splashStateNotifierProvider =
+    StateNotifierProvider<SplashStateNotifier, bool>(
+      (ref) => SplashStateNotifier(),
     );

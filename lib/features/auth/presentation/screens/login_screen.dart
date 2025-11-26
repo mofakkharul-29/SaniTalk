@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sani_talk/common/widgets/custom_container.dart';
 import 'package:sani_talk/common/widgets/custom_divider.dart';
 import 'package:sani_talk/common/widgets/custom_elevated_button.dart';
@@ -51,6 +52,9 @@ class LoginScreen extends StatelessWidget {
                   CustomText(
                     text1: 'Don\'t have account? ',
                     text2: 'Sign Up',
+                    onTab: () {
+                      context.go('/register');
+                    },
                   ),
                   const SizedBox(height: 5),
                   CustomDivider(text: 'OR'),
