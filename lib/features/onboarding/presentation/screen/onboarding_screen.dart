@@ -20,6 +20,8 @@ class OnboardingScreen extends ConsumerWidget {
       context,
     ).padding.top;
 
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: scaffoldBackgroundColor,
@@ -28,6 +30,19 @@ class OnboardingScreen extends ConsumerWidget {
           Padding(
             padding: EdgeInsets.only(top: statusBarHeight),
             child: const CustomPageBuilder(),
+          ),
+          Positioned(
+            top: screenHeight / 1.27,
+            left: 170,
+            child: Row(
+              children: [
+                getCircle(0, currentIndex),
+                const SizedBox(width: 5),
+                getCircle(1, currentIndex),
+                const SizedBox(width: 5),
+                getCircle(2, currentIndex),
+              ],
+            ),
           ),
           if (isLastPage)
             Positioned(
@@ -65,6 +80,21 @@ class OnboardingScreen extends ConsumerWidget {
               ),
             ),
         ],
+      ),
+    );
+  }
+
+  Widget getCircle(int index, int currentIndex) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      height: currentIndex == index ? 8 : 10,
+      width: currentIndex == index ? 25 : 10,
+      decoration: BoxDecoration(
+        color: currentIndex == index
+            ? Colors.amber
+            : Colors.transparent,
+        border: Border.all(color: Colors.black, width: 1.2),
+        borderRadius: BorderRadius.circular(6),
       ),
     );
   }
