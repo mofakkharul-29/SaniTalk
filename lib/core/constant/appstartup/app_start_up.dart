@@ -15,13 +15,10 @@ class AppStartUpNotifier extends StateNotifier<bool> {
   Future<void> setFirstLaunchedStatus(bool value) async {
     final SharedPreferences pref =
         await SharedPreferences.getInstance();
-    // await pref.setBool('isFirstLaunch', value);
-    // state = value;
     try {
       pref.setBool('isFirstLaunch', value);
       state = value;
     } catch (e) {
-      debugPrint(e.toString());
       throw e.toString();
     }
   }
