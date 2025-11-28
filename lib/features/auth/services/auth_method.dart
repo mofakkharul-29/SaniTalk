@@ -43,7 +43,7 @@ class AuthMethodService {
           'The account already exists for that email.',
         );
       }
-      return 'from firebase: ${e.toString()}';
+      return e.toString();
     } catch (e) {
       debugPrint('error caught: ${e.toString()}');
       return e.toString();
@@ -62,17 +62,30 @@ class AuthMethodService {
         email: email,
         password: password,
       );
-      return 'account created successfully!';
+      return 'SignIn successful!';
     } on FirebaseAuthException catch (e) {
-      return 'from firebase: ${e.toString()}';
+      return e.toString();
     } catch (e) {
       debugPrint('error caught: ${e.toString()}');
       return e.toString();
     }
   }
 
-  Future<void> logOut() async {
-    await _auth.signOut();
+  Future<String> logOut() async {
+    try {
+      await _auth.signOut();
+      // 2. [Optional] Clear any user-specific data from SharedPreferences/local storage here.
+      // Example: await SharedPreferences.getInstance().clear();
+      return 'success';
+    } on FirebaseAuthException catch (e) {
+      debugPrint('Firebase LogOut Error: ${e.message}');
+      return e.message ??
+          'An unknown error occurred during logout.';
+    } catch (e) {
+      // Catch any other unexpected errors
+      debugPrint('General LogOut Error: ${e.toString()}');
+      return 'Failed to log out.';
+    }
   }
 }
 

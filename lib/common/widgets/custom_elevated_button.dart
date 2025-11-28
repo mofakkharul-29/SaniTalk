@@ -16,7 +16,7 @@ class CustomElevatedButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onTab,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.blueAccent,
         foregroundColor: Colors.black,
         elevation: 1,
         textStyle: TextStyle(

@@ -5,7 +5,8 @@ class CustomTextfield extends StatelessWidget {
   final bool obscureText;
   final IconData icon;
   final String? labelText;
-  final IconData? postIcon;
+  // final IconData? suffixIcon;
+  final Widget? suffixIcon;
   final String? errortext;
   final void Function(String)? onChange;
   const CustomTextfield({
@@ -14,7 +15,8 @@ class CustomTextfield extends StatelessWidget {
     this.textInputType,
     required this.icon,
     required this.labelText,
-    this.postIcon,
+    // this.suffixIcon,
+    this.suffixIcon,
     this.errortext,
     this.onChange,
   });
@@ -36,7 +38,7 @@ class CustomTextfield extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: Icon(icon),
         prefixIconColor: Colors.black,
-        suffixIcon: Icon(obscureText ? postIcon : null),
+        suffixIcon: suffixIcon,
         suffixIconColor: Colors.black,
         labelText: labelText,
         filled: true,

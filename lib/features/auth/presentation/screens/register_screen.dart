@@ -7,6 +7,7 @@ import 'package:sani_talk/common/widgets/custom_elevated_button.dart';
 import 'package:sani_talk/common/widgets/custom_snackbar.dart';
 import 'package:sani_talk/common/widgets/custom_textfield.dart';
 import 'package:sani_talk/common/widgets/login_options.dart';
+import 'package:sani_talk/common/widgets/suffix_icon_button.dart';
 import 'package:sani_talk/core/constant/widget/custom_text.dart';
 import 'package:sani_talk/features/auth/provider/auth_provider.dart';
 import 'package:sani_talk/features/auth/services/auth_method.dart';
@@ -82,18 +83,24 @@ class RegisterScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 8),
                   CustomTextfield(
-                    obscureText: true,
+                    obscureText: formState.isPasswordHidden,
                     onChange: (value) => formNotifier
                         .updateUserPassword(value),
                     icon: Icons.lock_outlined,
                     labelText: 'Enter Password',
                     errortext: formState.passwordError,
+                    suffixIcon: SuffixIconButton(
+                      notifier: formNotifier,
+                      authState: formState,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   formState.isLoading
                       ? Center(
-                          child:
-                              CircularProgressIndicator(),
+                          child: CircularProgressIndicator(
+                            backgroundColor:
+                                Colors.blueAccent,
+                          ),
                         )
                       : CustomElevatedButton(
                           text: 'Sign Up',
