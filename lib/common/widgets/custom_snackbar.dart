@@ -6,6 +6,7 @@ class CustomSnackbar {
     required String message,
     Duration duration = const Duration(seconds: 3),
   }) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.grey[500],

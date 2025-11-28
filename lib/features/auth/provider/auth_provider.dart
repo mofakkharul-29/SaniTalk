@@ -55,6 +55,10 @@ class AuthStateNotifier
   void setLoading(bool isLoading) {
     state = state.copyWith(isLoading: isLoading);
   }
+
+  void resetState() {
+    state = AuthFormModelState();
+  }
 }
 
 final authStateNotifierProvider =
