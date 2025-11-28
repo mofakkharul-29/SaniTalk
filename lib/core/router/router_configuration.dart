@@ -21,6 +21,9 @@ class RouterConfiguration {
     final refreshNotifier = ref.watch(
       authRefreshNotifierProvider,
     );
+    final bool isAuthCheckComplete = ref.watch(
+      isAuthCheckCompleteProvider,
+    );
     return GoRouter(
       initialLocation: '/splash',
       debugLogDiagnostics: true,
@@ -31,7 +34,7 @@ class RouterConfiguration {
         final User? user =
             FirebaseAuth.instance.currentUser;
 
-        if (isSplashLoading) {
+        if (isSplashLoading || !isAuthCheckComplete) {
           return null;
         }
 

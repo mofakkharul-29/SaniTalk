@@ -5,18 +5,25 @@ class CustomTextfield extends StatelessWidget {
   final bool obscureText;
   final IconData icon;
   final String? labelText;
+  final IconData? postIcon;
+  final String? errortext;
+  final void Function(String)? onChange;
   const CustomTextfield({
     super.key,
     required this.obscureText,
     this.textInputType,
     required this.icon,
     required this.labelText,
+    this.postIcon,
+    this.errortext,
+    this.onChange,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       maxLines: 1,
+      onChanged: onChange,
       autocorrect: false,
       keyboardType: textInputType,
       obscureText: obscureText,
@@ -29,9 +36,16 @@ class CustomTextfield extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: Icon(icon),
         prefixIconColor: Colors.black,
+        suffixIcon: Icon(obscureText ? postIcon : null),
+        suffixIconColor: Colors.black,
         labelText: labelText,
         filled: true,
         fillColor: Colors.grey,
+        errorText: errortext,
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red),
+        ),
+        errorStyle: TextStyle(color: Colors.red),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.blueAccent,

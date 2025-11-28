@@ -64,22 +64,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     super.dispose();
   }
 
-  // void navigateNext() {
-  //   final startUpStatus = ref.read(
-  //     appStartUpNotifierProvider,
-  //   );
-  //   if (startUpStatus) {
-  //     context.go('/onboarding');
-  //   } else {
-  //     final user = FirebaseAuth.instance.currentUser;
-  //     if (user == null) {
-  //       context.go('/login');
-  //     } else {
-  //       context.go('/home');
-  //     }
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
