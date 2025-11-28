@@ -2,7 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sani_talk/core/constant/appstartup/app_start_up.dart';
-import 'package:sani_talk/core/router/router_refresh_listenable.dart';
+
+// 1. Provides the raw Auth Stream
+final authStateChangesProvider = StreamProvider<User?>((
+  ref,
+) {
+  return FirebaseAuth.instance.authStateChanges();
+});
 
 class RouterNotifier extends ChangeNotifier {
   final Ref _ref;
@@ -10,17 +16,17 @@ class RouterNotifier extends ChangeNotifier {
   RouterNotifier(this._ref) {
     _ref.listen(
       authStateChangesProvider,
-      (_, __) => notifyListeners(),
+      (_, _) => notifyListeners(),
     );
     // Listen to Splash Changes
     _ref.listen(
       splashStateNotifierProvider,
-      (_, __) => notifyListeners(),
+      (_, _) => notifyListeners(),
     );
     // Listen to Onboarding/Startup Changes
     _ref.listen(
       appStartUpNotifierProvider,
-      (_, __) => notifyListeners(),
+      (_, _) => notifyListeners(),
     );
   }
 

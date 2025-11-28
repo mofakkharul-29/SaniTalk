@@ -10,15 +10,6 @@ import 'package:sani_talk/features/splash/presentation/screen/splash_screen.dart
 
 class RouterConfiguration {
   static final routerProvider = Provider<GoRouter>((ref) {
-    // final bool startUpStatus = ref.watch(
-    //   appStartUpNotifierProvider,
-    // ); // false
-    // final bool isSplashLoading = ref.watch(
-    //   splashStateNotifierProvider,
-    // ); // false
-    // final refreshNotifier = ref.watch(
-    //   authRefreshNotifierProvider,
-    // );
     final routerNotifier = ref.watch(
       routerNotifierProvider,
     );
@@ -26,49 +17,12 @@ class RouterConfiguration {
     return GoRouter(
       initialLocation: '/splash',
       debugLogDiagnostics: true,
-      // refreshListenable: refreshNotifier,
       refreshListenable: routerNotifier,
-
-      // redirect: (context, state) {
-      //   final path = state.uri.path;
-      //   final User? user =
-      //       FirebaseAuth.instance.currentUser;
-
-      //   if (isSplashLoading) {
-      //     return null;
-      //   }
-
-      //   if (startUpStatus) {
-      //     if (path != '/onboarding') {
-      //       return '/onboarding';
-      //     }
-      //   }
-
-      //   if (!startUpStatus) {
-      //     final authPaths = ['/login', '/register'];
-      //     if (user == null) {
-      //       // User is logged out: They can be on /login or /register, but nowhere else.
-      //       if (!authPaths.contains(path)) {
-      //         return '/login'; // Force them to login screen if they try to access /home, etc.
-      //       }
-      //     }
-      //     if (user != null && authPaths.contains(path)) {
-      //       return '/home'; // Logged in: Force them away from login/register
-      //     }
-      //   }
-      //   return null;
-      // },
       redirect: (context, state) {
         final path = state.uri.path;
-
-        // Access state directly from our Notifier getters
         final isSplash = routerNotifier.isSplashLoading;
         final isFirstLaunch = routerNotifier.isFirstLaunch;
         final user = routerNotifier.currentUser;
-
-        // --- Redirect Logic ---
-
-        // 1. If Splash is loading, stay here.
         if (isSplash) {
           return null;
         }
