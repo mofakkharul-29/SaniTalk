@@ -21,6 +21,5 @@ class SuffixIconButton extends StatelessWidget {
             : Icons.visibility_outlined,
       ),
     );
-    ;
   }
 }
