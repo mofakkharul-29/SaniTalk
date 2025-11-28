@@ -43,9 +43,8 @@ final isAuthCheckCompleteProvider = StateProvider<bool>((
 ) {
   final authStream = ref.watch(authStateChangesProvider);
 
-  return authStream.when(
-    data: (user) => true,
-    error: (err, stack) => true,
+  return authStream.maybeWhen(
     loading: () => false,
+    orElse: () => true,
   );
 });
