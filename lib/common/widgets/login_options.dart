@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 
 class LoginOptions extends StatelessWidget {
-  const LoginOptions({super.key});
+  final void Function()? onGoogleTab;
+  final void Function()? onMobileTab;
+  final void Function()? onFacebookTab;
+  const LoginOptions({
+    super.key,
+    this.onGoogleTab,
+    this.onMobileTab,
+    this.onFacebookTab,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        getIconButton('assets/images/google.png', () {}),
+        getIconButton(
+          'assets/images/google.png',
+          onGoogleTab,
+        ),
         const SizedBox(width: 20),
         getIconButton('assets/images/facebook.png', () {}),
         const SizedBox(width: 20),

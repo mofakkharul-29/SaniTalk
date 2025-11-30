@@ -108,7 +108,32 @@ class LoginScreen extends ConsumerWidget {
                   const SizedBox(height: 5),
                   CustomDivider(text: 'OR'),
                   const SizedBox(height: 10),
-                  LoginOptions(),
+                  LoginOptions(
+                    onGoogleTab: () async {
+                      final auth = ref.read(
+                        authMethodProvider,
+                      );
+                      final result = await auth
+                          .signInWithGoogle();
+                      if (result == 'success') {
+                        debugPrint(
+                          'Google login successful!',
+                        );
+                        if (!context.mounted) return;
+                        CustomSnackbar.show(
+                          context,
+                          message:
+                              'Google login successful!',
+                        );
+                      } else {
+                        if (!context.mounted) return;
+                        CustomSnackbar.show(
+                          context,
+                          message: result,
+                        );
+                      }
+                    },
+                  ),
                 ],
               ),
             ),
