@@ -6,6 +6,7 @@ import 'package:sani_talk/common/widgets/custom_divider.dart';
 import 'package:sani_talk/common/widgets/custom_elevated_button.dart';
 import 'package:sani_talk/common/widgets/custom_snackbar.dart';
 import 'package:sani_talk/common/widgets/custom_textfield.dart';
+import 'package:sani_talk/common/widgets/google_signin_function.dart';
 import 'package:sani_talk/common/widgets/login_options.dart';
 import 'package:sani_talk/common/widgets/suffix_icon_button.dart';
 import 'package:sani_talk/core/constant/widget/custom_text.dart';
@@ -119,7 +120,14 @@ class RegisterScreen extends ConsumerWidget {
                   const SizedBox(height: 5),
                   CustomDivider(text: 'OR'),
                   const SizedBox(height: 10),
-                  LoginOptions(),
+                  LoginOptions(
+                    onGoogleTab: () {
+                      GoogleSigninFunction.onGoogleTap(
+                        context: context,
+                        ref: ref,
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
