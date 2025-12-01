@@ -10,6 +10,8 @@ class AuthMethodService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
   bool _googleInitialized = false;
+  String _verificationId = '';
+  int? _resendToken;
 
   Future<void> _initGoogle() async {
     if (_googleInitialized) return;
@@ -150,6 +152,78 @@ class AuthMethodService {
     } catch (e) {
       debugPrint("Google Sign-In Error: $e");
       return e.toString();
+    }
+  }
+
+  Future<String> sendOtop(String phoneNumber) async {
+    try {
+      await _auth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        timeout: const Duration(seconds: 60),
+        forceResendingToken: _resendToken,
+
+        verificationCompleted:
+            (PhoneAuthCredential credential) async {
+              await _auth.signInWithCredential(credential);
+              await _savePhoneUser();
+            },
+
+        verificationFailed: (FirebaseAuthException e) {
+          throw e.message ?? 'Phone verification failed';
+        },
+        codeSent:
+            (
+              String verificationId,
+              int? forceResendingToken,
+            ) {
+              _verificationId = verificationId;
+              _resendToken = forceResendingToken;
+            },
+
+        codeAutoRetrievalTimeout: (String verificationId) {
+          _verificationId = verificationId;
+        },
+      );
+      return 'otp_sent';
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  Future<String> verifyOtp(String smsCode) async {
+    try {
+      final credential = PhoneAuthProvider.credential(
+        verificationId: _verificationId,
+        smsCode: smsCode,
+      );
+      UserCredential userCred = await _auth
+          .signInWithCredential(credential);
+      await _savePhoneUser();
+      return 'success';
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  Future<void> _savePhoneUser() async {
+    final user = _auth.currentUser;
+    if (user == null) return;
+
+    final doc = await _firestore
+        .collection('users')
+        .doc(user.uid)
+        .get();
+
+    if (!doc.exists) {
+      await _firestore
+          .collection('users')
+          .doc(user.uid)
+          .set({
+            'uid': user.uid,
+            'phone': user.phoneNumber,
+            'provider': 'phone',
+            'createdAt': FieldValue.serverTimestamp(),
+          });
     }
   }
 

@@ -3,3 +3,4 @@ const onboardingScreenRouteName = 'onboarding';
 const loginScreenRouteName = 'login';
 const registerScreenRouteName = 'register';
 const homeScreenRouteName = 'home';
+const phoneScreenRouteName = 'phone';
