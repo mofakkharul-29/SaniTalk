@@ -196,6 +196,7 @@ class AuthMethodService {
         verificationId: _verificationId,
         smsCode: smsCode,
       );
+      // ignore: unused_local_variable
       UserCredential userCred = await _auth
           .signInWithCredential(credential);
       await _savePhoneUser();
