@@ -24,6 +24,20 @@ class AuthMethodService {
     _googleInitialized = true;
   }
 
+  Future<void> _setUserOnline(String uid) async {
+    await _firestore.collection('users').doc(uid).update({
+      'isOnline': true,
+      'lastSeen': FieldValue.serverTimestamp(),
+    });
+  }
+
+  Future<void> _setUserOffline(String uid) async {
+    await _firestore.collection('users').doc(uid).update({
+      'isOnline': false,
+      'lastSeen': FieldValue.serverTimestamp(),
+    });
+  }
+
   Future<String> signUpUser({
     required String email,
     required String password,
@@ -50,6 +64,8 @@ class AuthMethodService {
             'uid': cred.user!.uid,
             'photoURL': cred.user!.photoURL ?? '',
             'provider': 'email',
+            'isOnline': true,
+            'lastSeen': FieldValue.serverTimestamp(),
             'createdAt': FieldValue.serverTimestamp(),
           });
       return 'success';
@@ -68,10 +84,13 @@ class AuthMethodService {
       if (email.isEmpty || password.isEmpty) {
         return 'Please enter all fields';
       }
-      await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      // here i will get the use
+      final UserCredential credential = await _auth
+          .signInWithEmailAndPassword(
+            email: email,
+            password: password,
+          );
+      await _setUserOnline(credential.user!.uid);
       return 'SignIn successful!';
     } on FirebaseAuthException catch (e) {
       return e.message ?? e.toString();
@@ -143,9 +162,18 @@ class AuthMethodService {
             'email': user.email ?? '',
             'photoURL': user.photoURL,
             'provider': 'google',
+            'isOnline': true,
+            'lastSeen': FieldValue.serverTimestamp(),
             'createdAt': FieldValue.serverTimestamp(),
+          }, SetOptions(merge: true));
+        } else {
+          await userDoc.update({
+            'isOnline': true,
+            'lastSeen': FieldValue.serverTimestamp(),
           });
         }
+
+        await _setUserOnline(user.uid);
       }
 
       return 'success';
@@ -230,8 +258,23 @@ class AuthMethodService {
 
   Future<String> logOut() async {
     try {
-      await _googleSignIn.signOut();
+      final uid = _auth.currentUser?.uid;
+      // Google logout if available
+      try {
+        await _googleSignIn.signOut();
+      } catch (e) {
+        // ignore google signout error (safe)
+      }
       await _auth.signOut();
+      if (uid != null) {
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(uid)
+            .update({
+              'isOnline': false,
+              'lastSeen': FieldValue.serverTimestamp(),
+            });
+      }
       return 'success';
     } catch (e) {
       return 'Failed to log out.';
