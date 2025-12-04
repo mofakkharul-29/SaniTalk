@@ -31,13 +31,6 @@ class AuthMethodService {
     });
   }
 
-  Future<void> _setUserOffline(String uid) async {
-    await _firestore.collection('users').doc(uid).update({
-      'isOnline': false,
-      'lastSeen': FieldValue.serverTimestamp(),
-    });
-  }
-
   Future<String> signUpUser({
     required String email,
     required String password,
