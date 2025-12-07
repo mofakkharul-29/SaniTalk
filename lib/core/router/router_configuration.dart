@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sani_talk/core/constant/widget/route_name.dart';
@@ -9,6 +10,13 @@ import 'package:sani_talk/features/onboarding/presentation/screen/onboarding_scr
 import 'package:sani_talk/features/splash/presentation/screen/splash_screen.dart';
 
 class RouterConfiguration {
+  static final _rootNavigatorKey =
+      GlobalKey<NavigatorState>();
+  static final _shellNavigatorKey =
+      GlobalKey<NavigatorState>(
+        debugLabel: 'Shell Navigator',
+      );
+
   static final routerProvider = Provider<GoRouter>((ref) {
     final routerNotifier = ref.watch(
       routerNotifierProvider,
@@ -17,6 +25,7 @@ class RouterConfiguration {
     return GoRouter(
       initialLocation: '/splash',
       debugLogDiagnostics: true,
+      navigatorKey: _rootNavigatorKey,
       refreshListenable: routerNotifier,
       redirect: (context, state) {
         final path = state.uri.path;
@@ -85,6 +94,12 @@ class RouterConfiguration {
           name: homeScreenRouteName,
           builder: (context, state) => const HomeScreen(),
         ),
+        // StatefulShellRoute.indexedStack(
+        //   builder: (context, state, navigationShell) {
+            
+        //   },
+        //   branches: [],
+        //   ),
       ],
     );
   });
