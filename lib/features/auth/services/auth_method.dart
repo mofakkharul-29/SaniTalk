@@ -9,6 +9,7 @@ class AuthMethodService {
       FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+  // final GoogleSignIn _googleSignIn = GoogleSignIn();
   bool _googleInitialized = false;
   String _verificationId = '';
   int? _resendToken;
@@ -42,6 +43,7 @@ class AuthMethodService {
           name.isEmpty) {
         return 'Please enter all fields';
       }
+
       final UserCredential cred = await _auth
           .createUserWithEmailAndPassword(
             email: email,
