@@ -5,17 +5,16 @@ import 'package:sani_talk/core/constant/widget/route_name.dart';
 import 'package:sani_talk/core/router/router_notifier.dart';
 import 'package:sani_talk/features/auth/presentation/screens/login_screen.dart';
 import 'package:sani_talk/features/auth/presentation/screens/register_screen.dart';
+import 'package:sani_talk/features/chat/chat_screen.dart';
 import 'package:sani_talk/features/home/presentation/screen/home_screen.dart';
 import 'package:sani_talk/features/onboarding/presentation/screen/onboarding_screen.dart';
+import 'package:sani_talk/features/profile/profile_screen.dart';
 import 'package:sani_talk/features/splash/presentation/screen/splash_screen.dart';
+import 'package:sani_talk/features/user/user.dart';
 
 class RouterConfiguration {
   static final _rootNavigatorKey =
       GlobalKey<NavigatorState>();
-  static final _shellNavigatorKey =
-      GlobalKey<NavigatorState>(
-        debugLabel: 'Shell Navigator',
-      );
 
   static final routerProvider = Provider<GoRouter>((ref) {
     final routerNotifier = ref.watch(
@@ -60,7 +59,7 @@ class RouterConfiguration {
           if (authPaths.contains(path) ||
               path == '/splash' ||
               path == '/onboarding') {
-            return '/home';
+            return '/chat';
           }
         }
 
@@ -89,17 +88,49 @@ class RouterConfiguration {
           name: loginScreenRouteName,
           builder: (context, state) => const LoginScreen(),
         ),
-        GoRoute(
-          path: '/home',
-          name: homeScreenRouteName,
-          builder: (context, state) => const HomeScreen(),
+        // GoRoute(
+        //   path: '/home',
+        //   name: homeScreenRouteName,
+        //   builder: (context, state) => const HomeScreen(),
+        // ),
+        StatefulShellRoute.indexedStack(
+          builder: (context, state, navigationShell) {
+            return HomeScreen(
+              navigationShell: navigationShell,
+            );
+          },
+          branches: <StatefulShellBranch>[
+            StatefulShellBranch(
+              routes: <RouteBase>[
+                GoRoute(
+                  path: '/chat',
+                  name: chatScreenRouteName,
+                  builder: (context, state) =>
+                      const ChatScreen(),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: <RouteBase>[
+                GoRoute(
+                  path: '/user',
+                  name: userScreenRouteName,
+                  builder: (context, state) => const User(),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: <RouteBase>[
+                GoRoute(
+                  path: '/profile',
+                  name: profileScreenRouteName,
+                  builder: (context, state) =>
+                      const ProfileScreen(),
+                ),
+              ],
+            ),
+          ],
         ),
-        // StatefulShellRoute.indexedStack(
-        //   builder: (context, state, navigationShell) {
-            
-        //   },
-        //   branches: [],
-        //   ),
       ],
     );
   });

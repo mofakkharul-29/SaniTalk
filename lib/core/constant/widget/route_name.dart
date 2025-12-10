@@ -4,3 +4,6 @@ const loginScreenRouteName = 'login';
 const registerScreenRouteName = 'register';
 const homeScreenRouteName = 'home';
 const phoneScreenRouteName = 'phone';
+const chatScreenRouteName = 'chat';
+const userScreenRouteName = 'user';
+const profileScreenRouteName = 'profile';
