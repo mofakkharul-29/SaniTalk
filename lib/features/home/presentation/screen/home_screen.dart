@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sani_talk/core/theme/color_pallate.dart';
 import 'package:sani_talk/features/home/presentation/widgets/custom_bottom_nav.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -13,9 +14,11 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      backgroundColor: scaffoldBackgroundColor,
       appBar: AppBar(
+        backgroundColor: shadowColor,
         title: Text(
-          'Home',
+          _getTitle(),
           style: TextStyle(fontWeight: FontWeight.w700),
         ),
         centerTitle: true,
@@ -63,5 +66,14 @@ class HomeScreen extends ConsumerWidget {
       //   ),
       // ),
     );
+  }
+
+  String _getTitle() {
+    return switch (navigationShell.currentIndex) {
+      0 => 'Chat',
+      1 => 'Users',
+      2 => 'Profile',
+      _ => 'Home',
+    };
   }
 }

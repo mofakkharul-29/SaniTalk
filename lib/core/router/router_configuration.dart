@@ -34,7 +34,6 @@ class RouterConfiguration {
         if (isSplash) {
           return null;
         }
-
         // 2. Splash is done. If it's the first launch, go to Onboarding.
         if (isFirstLaunch) {
           if (path != '/onboarding') {
@@ -43,7 +42,6 @@ class RouterConfiguration {
           // If we are already on onboarding, return null to allow it.
           return null;
         }
-
         // 3. Not first launch. Check Auth.
         final authPaths = ['/login', '/register'];
 
@@ -62,7 +60,6 @@ class RouterConfiguration {
             return '/chat';
           }
         }
-
         return null;
       },
       routes: [
@@ -88,11 +85,6 @@ class RouterConfiguration {
           name: loginScreenRouteName,
           builder: (context, state) => const LoginScreen(),
         ),
-        // GoRoute(
-        //   path: '/home',
-        //   name: homeScreenRouteName,
-        //   builder: (context, state) => const HomeScreen(),
-        // ),
         StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) {
             return HomeScreen(

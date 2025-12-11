@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sani_talk/core/theme/color_pallate.dart';
 
 class CustomBottomNav extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
@@ -21,7 +22,9 @@ class CustomBottomNav extends StatelessWidget {
     final int currentIndex = navigationShell.currentIndex;
 
     return BottomNavigationBar(
-      elevation: 5,
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: shadowColor,
+      elevation: 15,
       selectedFontSize: 15,
       selectedLabelStyle: TextStyle(
         fontWeight: FontWeight.w600,
